@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="CodingZ:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>CodingZ</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="CodingZ-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="CodingZ:war exploded" />
+    </root>
+  </artifact>
+</component>
