@@ -53,6 +53,15 @@
         <servlet-name>DeleteQuestionServlet</servlet-name>
         <url-pattern>/DeleteQuestionServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>FindTestServlet</servlet-name>
+        <servlet-class>servletController.FindTestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FindTestServlet</servlet-name>
+        <url-pattern>/FindTestServlet</url-pattern>
+    </servlet-mapping>
+
 
 
 </web-app>

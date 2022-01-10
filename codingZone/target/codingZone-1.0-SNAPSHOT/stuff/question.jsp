@@ -107,12 +107,10 @@
 <br>
 <br>
 <ul>
-  <%--  <li><a href="stuff/question.jsp" > add question</a></li>
-    <li><a href="#" > add test</a></li>--%>
-      <li><a href="FindQuestionServlet" > add question</a>
+    <li><a href="FindQuestionServlet" > add question</a>
 
-      <li><a href="#" > add test</a></li>
-      <li><a href="LogOutServlet" > Log Out</a></li>
+    <li><a href="FindTestServlet" > add test</a></li>
+    <li><a href="LogOutServlet" > Log Out</a></li>
 </ul>
 </body>
 </html>
