@@ -1,6 +1,7 @@
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.List" %>
 <%@ page import="models.Question" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -23,22 +24,22 @@
                 <div class="Answer">
                     <label for="Answer1">Reponse 1:</label>
                     <input name="Answer1" type="text" id="Answer1">
-                    <input name="TrueAnswer" type="radio" value="0" >
+                    <input name="TrueAnswer" type="radio" value="1" >
                 </div>
                 <div class="Answer">
                     <label for="Answer2">Reponse 1:</label>
                     <input name="Answer2" type="text" id="Answer2">
-                    <input name="TrueAnswer" type="radio" value="1" >
+                    <input name="TrueAnswer" type="radio" value="2" >
                 </div>
                 <div class="Answer">
                     <label for="Answer3">Reponse 1:</label>
                     <input name="Answer3" type="text" id="Answer3">
-                    <input name="TrueAnswer" type="radio" value="2" >
+                    <input name="TrueAnswer" type="radio" value="3" >
                 </div>
                 <div class="Answer">
                     <label for="Answer4">Reponse 1:</label>
                     <input name="Answer4" type="text" id="Answer4">
-                    <input name="TrueAnswer" type="radio" value="3" >
+                    <input name="TrueAnswer" type="radio" value="4" >
                 </div>
 
             </div>
@@ -73,14 +74,18 @@
     </tr>
     </thead>
     <tbody>
-    <%
+<%--    <%
 
          List<Question> list =(List<Question>) request.getAttribute("listQuestion");
         Iterator iterator = list.iterator();
         while(iterator.hasNext()){
             Question Q = (Question)iterator.next();
 
-    %>
+    %>--%>
+<%
+   List<Question> QS = (List<Question>) request.getAttribute("listQuestion");
+    for(Question Q:QS){
+%>
     <tr>
         <td><%=Q.getId_question() %></td>
         <td><%=Q.getContent() %></td>

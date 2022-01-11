@@ -1,84 +1,54 @@
-<%@ page import="java.io.PrintWriter" %><%--
-  Created by IntelliJ IDEA.
-  User: admin
-  Date: 06/01/2022
-  Time: 15:54
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
 <html>
 <head>
     <% if(session.getAttribute("staff")!=null){
         response.sendRedirect("stuff/dashboard.jsp");
     }%>
-    <title>Login</title>
-    <script
-            src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous"></script>
+    <title>JSP - Hello World</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script type="text/javascript"
             src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+    <style><%@include file="/css/style.css"%></style>
 </head>
 <body>
-<div style="text-align: center">
-    <h1>Admin Login</h1>
-    <form action="LoginServlet" id="loginForm" method="post">
-        <label for="email">Email:</label>
-        <input name="email" id="email" size="30" />
-        <br><br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" size="30" />
-        <br>${message}
-        <br><br>
-        <button type="submit">Login</button>
-    </form>
 
+<br/>
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 login-form-1">
+            <h3>CodingZone</h3>
+            <form action="LoginServlet" id="loginForm" method="post">
+                <div class="form-group">
+                    <input name="email" id="email" type="email" class="form-control" placeholder="Your Email *"  required />
+                </div>
+                <div class="form-group">
+                    <input name="password" id="password" type="password" class="form-control" placeholder="Your Password *"   required/>
+                </div>
 
+                <div class="form-group">
+                    <button class="btn btn-light col-12 my-2  font-weight-bold" type="submit">Login</button>
+                </div>
+                <div class="form-group">
+                    <div class="message">${message}</div>
 
+                </div>
+            </form>
+
+        </div>
+        <div class="col-md-6 login-form-2" >
+
+        </div>
+    </div>
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script type="text/javascript">
 
-    $(document).ready(function() {
-        $("#loginForm").validate({
-            rules: {
-                email: {
-                    required: true,
-                    email: true
-                },
-
-                password: "required",
-            },
-
-            messages: {
-                email: {
-                    required: "Please enter email",
-                    email: "Please enter a valid email address"
-                },
-
-                password: "Please enter password"
-            }
-        });
-
-    });
 </script>
 </html>
+
+
+

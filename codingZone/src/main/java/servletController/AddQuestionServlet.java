@@ -26,7 +26,7 @@ public class AddQuestionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String questionContent = request.getParameter("question");
-        int idquestion=  Integer.parseInt(request.getParameter( "idquestion"));
+        /*int idquestion=  Integer.parseInt(request.getParameter( "idquestion"));*/
 
          String Answer1=  request.getParameter( "Answer1");
         String Answer2=  request.getParameter( "Answer2");
@@ -39,8 +39,8 @@ public class AddQuestionServlet extends HttpServlet {
 
 
 
-        Question question = new Question(idquestion ,questionContent,Answer1,Answer2,Answer3,Answer4,TrueAnswer,duration,score);
-        int flag = daoQuestion.update(question);
+        Question question = new Question(questionContent,Answer1,Answer2,Answer3,Answer4,TrueAnswer,duration,score);
+        int flag = daoQuestion.create(question);
         response.sendRedirect("FindQuestionServlet");
 
 
