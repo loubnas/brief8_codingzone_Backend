@@ -61,6 +61,23 @@
         <servlet-name>FindTestServlet</servlet-name>
         <url-pattern>/FindTestServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteTestServlet</servlet-name>
+        <servlet-class>servletController.DeleteTestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteTestServlet</servlet-name>
+        <url-pattern>/DeleteTestServlet</url-pattern>
+    </servlet-mapping>
+       <servlet>
+        <servlet-name>UpdateQuestionServlet</servlet-name>
+        <servlet-class>servletController.UpdateQuestionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateQuestionServlet</servlet-name>
+        <url-pattern>/UpdateQuestionServlet</url-pattern>
+    </servlet-mapping>
+
 
 
 

@@ -45,8 +45,18 @@ public class StaffDaoImpl extends DAO<Staff> {
     }
 
     @Override
-    public List<Staff> find() {
+    public List<Staff> findAll() {
         return null;
+    }
+
+    @Override
+    public Staff find(int id) {
+        return null;
+    }
+
+    @Override
+    public int update(Staff obj) {
+        return 0;
     }
 
     @Override

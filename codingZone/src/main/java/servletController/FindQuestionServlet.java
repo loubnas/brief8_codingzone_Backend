@@ -18,7 +18,7 @@ public class FindQuestionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<Question> listQuestion =( List<Question>) daoQuestion.find();
+        List<Question> listQuestion =( List<Question>) daoQuestion.findAll();
         request.setAttribute("listQuestion",listQuestion);
 
         request.getRequestDispatcher("/stuff/question.jsp").forward(request,response);

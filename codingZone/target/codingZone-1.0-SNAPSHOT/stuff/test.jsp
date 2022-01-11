@@ -44,7 +44,7 @@
         <td><%=Q.getDescription() %></td>
         <td><%=Q.getId_staff() %></td>
 
-        <td><a class="btn btn-danger" href="DeleteQuestionServlet?id=<%=Q.getId_test()%>">Delete</a></td>
+        <td><a class="btn btn-danger" href="DeleteTestServlet?id=<%=Q.getId_test()%>">Delete</a></td>
 
 
     </tr>

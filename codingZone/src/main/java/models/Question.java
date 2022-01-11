@@ -11,10 +11,22 @@ public class Question {
     private int duration;
     private int score;
 
-
+    public Question() {
+    }
 
     public Question(int id_question, String content, String reponse1, String reponse2, String reponse3, String reponse4, int trueanswer, int duration, int score) {
         this.id_question = id_question;
+        this.content = content;
+        this.reponse1 = reponse1;
+        this.reponse2 = reponse2;
+        this.reponse3 = reponse3;
+        this.reponse4 = reponse4;
+        this.trueanswer = trueanswer;
+        this.duration = duration;
+        this.score = score;
+    }
+    public Question( String content, String reponse1, String reponse2, String reponse3, String reponse4, int trueanswer, int duration, int score) {
+
         this.content = content;
         this.reponse1 = reponse1;
         this.reponse2 = reponse2;

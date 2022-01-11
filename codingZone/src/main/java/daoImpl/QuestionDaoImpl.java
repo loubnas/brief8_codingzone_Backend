@@ -2,6 +2,7 @@ package daoImpl;
 
 import dao.DAO;
 import models.Question;
+import models.Staff;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -24,8 +25,8 @@ public class QuestionDaoImpl extends DAO<Question> {
        /* int uniqueID = UUID.randomUUID().toString();*/
 
         try {
-            PreparedStatement preparedStatement =this.connection.prepareStatement("INSERT INTO question (id_question, content,reponse1,reponse2,reponse3,reponse4,duration,score,trueanswer) VALUES (?,?,?,?,?,?,?,?,?);");
-            preparedStatement.setInt(1, question.getId_question());
+            PreparedStatement preparedStatement =this.connection.prepareStatement("INSERT INTO question ( content,reponse1,reponse2,reponse3,reponse4,duration,score,trueanswer) VALUES (?,?,?,?,?,?,?,?);");
+       /*     preparedStatement.setInt(1, question.getId_question());
             preparedStatement.setString(2, question.getContent());
             preparedStatement.setString(3,question.getReponse1());
             preparedStatement.setString(4,question.getReponse2());
@@ -33,8 +34,17 @@ public class QuestionDaoImpl extends DAO<Question> {
             preparedStatement.setString(6,question.getReponse4());
             preparedStatement.setInt(7, question.getDuration());
             preparedStatement.setInt(8, question.getScore());
-            preparedStatement.setInt(9, question.getTrueAnswer());
-    ;
+            preparedStatement.setInt(9, question.getTrueAnswer());*/
+
+            preparedStatement.setString(1, question.getContent());
+            preparedStatement.setString(2,question.getReponse1());
+            preparedStatement.setString(3,question.getReponse2());
+            preparedStatement.setString(4,question.getReponse3());
+            preparedStatement.setString(5,question.getReponse4());
+            preparedStatement.setInt(6, question.getDuration());
+            preparedStatement.setInt(7, question.getScore());
+            preparedStatement.setInt(8, question.getTrueAnswer());
+
 
 
 
@@ -57,7 +67,7 @@ public class QuestionDaoImpl extends DAO<Question> {
     }
 
     @Override
-    public List<Question> find() {
+    public List<Question> findAll() {
 
         try {
             String query = "select * from question";
@@ -87,6 +97,72 @@ public class QuestionDaoImpl extends DAO<Question> {
      e.printStackTrace();
             return null;
         }
+
+    }
+
+    @Override
+    public Question find(int id) {
+        Question question = null;
+        try {
+            PreparedStatement preparedStatement =this.connection.prepareStatement("SELECT * FROM question  WHERE id_question =?");
+            preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                 question = new Question();
+                question.setId_question(resultSet.getInt("id_question"));
+                question.setContent(resultSet.getString("content"));
+                question.setReponse1(resultSet.getString("reponse1"));
+                question.setReponse2(resultSet.getString("reponse2"));
+                question.setReponse3(resultSet.getString("reponse3"));
+                question.setReponse4(resultSet.getString("reponse4"));
+                question.setDuration(resultSet.getInt("duration"));
+                question.setScore(resultSet.getInt("score"));
+                question.setTrueAnswer(resultSet.getInt("trueanswer"));
+
+
+
+
+
+            }
+
+            return question;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public int update(Question question) {
+        try {
+            PreparedStatement preparedStatement =this.connection.prepareStatement("UPDATE  question set content=?,reponse1=?,reponse2=?,reponse3=?,reponse4=?,duration=?,score=?,trueanswer=? where id_question=?;");
+            preparedStatement.setString(1, question.getContent());
+            preparedStatement.setString(2,question.getReponse1());
+            preparedStatement.setString(3,question.getReponse2());
+            preparedStatement.setString(4,question.getReponse3());
+            preparedStatement.setString(5,question.getReponse4());
+            preparedStatement.setInt(6, question.getDuration());
+            preparedStatement.setInt(7, question.getScore());
+            preparedStatement.setInt(8, question.getTrueAnswer());
+            preparedStatement.setInt(9, question.getId_question());
+
+
+
+            int resultSet = preparedStatement.executeUpdate();
+
+            return resultSet;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+
+            e.printStackTrace();
+            return 0;
+        }
+
+
 
     }
 

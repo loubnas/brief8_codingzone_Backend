@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class Config {
 
-    private static String url = "jdbc:postgresql://localhost:5432/codingzone";
+    private static String url = "jdbc:postgresql://localhost:5432/dbCODING";
     private static String user = "postgres" ;
     private static String passwd = "admin";
     private static Connection connect;

@@ -22,7 +22,7 @@ public class TestDaoImpl extends DAO<Test> {
     }
 
     @Override
-    public List<Test> find() {
+    public List<Test> findAll() {
         try {
             String query = "select * from test";
 
@@ -51,7 +51,31 @@ public class TestDaoImpl extends DAO<Test> {
     }
 
     @Override
-    public int delete(int id) {
+    public Test find(int id) {
+        return null;
+    }
+
+    @Override
+    public int update(Test obj) {
         return 0;
+    }
+
+    @Override
+    public int delete(int id) {
+        try {
+            PreparedStatement preparedStatement =this.connection.prepareStatement("DELETE from test where id_test=?");
+            preparedStatement.setInt(1, id);
+
+
+            int flag = preparedStatement.executeUpdate();
+
+            return flag;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+
+            e.printStackTrace();
+            return 0;
+        }
+
     }
 }

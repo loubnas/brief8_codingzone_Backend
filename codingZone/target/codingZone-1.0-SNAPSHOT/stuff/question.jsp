@@ -8,7 +8,7 @@
 </head>
 <body>
 <h3>question</h3>
-<h3>welcome admin in question page a</h3>
+<h3>welcome admin in question page </h3>
 <form  action="AddQuestionServlet" method="post">
 
 
@@ -17,7 +17,7 @@
         <div class="Question">
             <div class="Header">
                 <label for="question">question:</label>
-                <input id="question" name="question" type="text"/><input id="idQuestion" name="idQuestion" type="number" placeholder="question ID"/><input id="duration" name="duration" type="number" placeholder="question duration"/><input id="score" name="score" type="number" placeholder="question score"/>
+                <input id="question" name="question" type="text"/><input id="duration" name="duration" type="number" placeholder="question duration"/><input id="score" name="score" type="number" placeholder="question score"/>
             </div>
             <div class="Body">
                 <div class="Answer">
@@ -92,7 +92,8 @@
         <td><%=Q.getScore() %></td>
         <td><%=Q.getDuration() %></td>
         <td><%=Q.getDuration() %></td>
-        <td><a class="btn btn-danger" href="DeleteQuestionServlet?id=<%=Q.getId_question()%>">Delete</a></td>
+        <td><a class="btn btn-danger" href="DeleteQuestionServlet?action=delete&id=<%=Q.getId_question()%>">Delete</a></td>
+        <td><a class="btn btn-danger" href="DeleteQuestionServlet?action=edite&id=<%=Q.getId_question()%>">Edite</a></td>
 
 
     </tr>

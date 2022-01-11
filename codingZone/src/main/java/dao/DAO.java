@@ -14,7 +14,11 @@ public abstract class DAO<T> {
 
     public abstract int create(T obj) ;
 
-    public abstract List<T> find();
+    public abstract List<T> findAll();
+
+    public abstract T find (int id);
+
+    public abstract int update(T obj) ;
 
     public abstract int delete (int id);
 
