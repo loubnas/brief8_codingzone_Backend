@@ -4,9 +4,11 @@ import dao.DAO;
 import daoImpl.QuestionDaoImpl;
 import daoImpl.StaffDaoImpl;
 import daoImpl.TestDaoImpl;
+import daoImpl.TestQstsDaoImpl;
 import models.Question;
 import models.Staff;
 import models.Test;
+import models.TestQuestion;
 
 public class DaoFactory {
 
@@ -23,5 +25,10 @@ public class DaoFactory {
 
         return new TestDaoImpl();
     }
+
+    public static DAO<TestQuestion> getTestQstsImpl(){
+        return  new TestQstsDaoImpl();
+    }
+
 
 }
