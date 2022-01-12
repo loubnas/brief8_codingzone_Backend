@@ -7,7 +7,7 @@ public class Config {
 
     private static String url = "jdbc:postgresql://localhost:5432/dbCODING";
     private static String user = "postgres" ;
-    private static String passwd = "admin";
+    private static String passwd = "root";
     private static Connection connect;
 
     public static Connection getInstance(){
