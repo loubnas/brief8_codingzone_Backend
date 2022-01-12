@@ -11,14 +11,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestDaoImpl extends DAO<Test> {
-    @Override
-    public Test login(Test obj) {
-        return null;
-    }
+
 
     @Override
-    public int create(Test obj) {
-        return 0;
+    public int create(Test test) {
+
+        try {
+            PreparedStatement preparedStatement =this.connection.prepareStatement("INSERT INTO test ( name,description,id_staff) VALUES (?,?,?);");
+            preparedStatement.setString(1,test.getName());
+            preparedStatement.setString(2,test.getDescription());
+            preparedStatement.setLong(3,test.getId_staff());
+
+            int resultSet = preparedStatement.executeUpdate();
+
+            return resultSet;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     @Override
@@ -77,5 +87,12 @@ public class TestDaoImpl extends DAO<Test> {
             return 0;
         }
 
+
+    }
+
+
+    @Override
+    public Test login(Test obj) {
+        return null;
     }
 }
