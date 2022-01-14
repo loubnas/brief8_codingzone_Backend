@@ -77,7 +77,7 @@ public class QuestionDaoImpl extends DAO<Question> {
 
             List<Question> listQuestion = new ArrayList<Question>();
             while (resultSet.next()) {
-                System.out.print( resultSet.getString("content"));
+                //System.out.print( resultSet.getString("content"));
                 listQuestion.add(new Question(
                         resultSet.getInt("id_question"),
                         resultSet.getString("content"),

@@ -1,12 +1,8 @@
 package factory;
 
 import dao.DAO;
-import daoImpl.QuestionDaoImpl;
-import daoImpl.StaffDaoImpl;
-import daoImpl.TestDaoImpl;
-import models.Question;
-import models.Staff;
-import models.Test;
+import daoImpl.*;
+import models.*;
 
 public class DaoFactory {
 
@@ -23,5 +19,21 @@ public class DaoFactory {
 
         return new TestDaoImpl();
     }
+
+    public static DAO<TestQuestion> getTestQstsImpl(){
+        return  new TestQstsDaoImpl();
+    }
+
+    public static DAO<Student> getStudentImpl(){
+        return  new StudentDaoImpl();
+    }
+
+    public static DAO<TestStudent> getTestStudentImpl(){
+        return  new TestStudentDaoImpl();
+    }
+
+
+
+
 
 }

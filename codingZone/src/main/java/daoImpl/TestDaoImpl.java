@@ -7,18 +7,49 @@ import models.Test;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestDaoImpl extends DAO<Test> {
-    @Override
-    public Test login(Test obj) {
-        return null;
+
+    public Test create(Test test,int xtra) {
+
+        try {
+            PreparedStatement preparedStatement =this.connection.prepareStatement("INSERT INTO test ( id_test,name,description,id_staff) VALUES (DEFAULT,?,?,?);", Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1,test.getName());
+            preparedStatement.setString(2,test.getDescription());
+            preparedStatement.setLong(3,test.getId_staff());
+
+            int resultSet = preparedStatement.executeUpdate();
+            ResultSet rs=preparedStatement.getGeneratedKeys();
+            while(rs.next()){
+                test.setId_test(rs.getInt(1));
+            }
+
+            return  test;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
-    public int create(Test obj) {
-        return 0;
+    public int create(Test test) {
+
+        try {
+            PreparedStatement preparedStatement =this.connection.prepareStatement("INSERT INTO test ( id_test,name,description,id_staff) VALUES (DEFAULT,?,?,?);", Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1,test.getName());
+            preparedStatement.setString(2,test.getDescription());
+            preparedStatement.setLong(3,test.getId_staff());
+
+            int resultSet = preparedStatement.executeUpdate();
+
+            return  resultSet;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     @Override
@@ -77,5 +108,12 @@ public class TestDaoImpl extends DAO<Test> {
             return 0;
         }
 
+
+    }
+
+
+    @Override
+    public Test login(Test obj) {
+        return null;
     }
 }

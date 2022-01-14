@@ -18,6 +18,12 @@ public class Test {
 
     }
 
+    public Test(String name, String description, int id_staff) {
+        this.name = name;
+        this.description = description;
+        this.id_staff = id_staff;
+    }
+
     public int getId_test() {
         return id_test;
     }
