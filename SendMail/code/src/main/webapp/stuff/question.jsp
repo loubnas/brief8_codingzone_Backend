@@ -110,7 +110,7 @@
                 </div>
                 <div class="card-body">
 
-                    <p class="card-text"><%=Q.getContent() %> With supporting text below as a natural lead-in to additional content.</p>
+                    <p class="card-text"><%=Q.getContent() %></p>
                 </div>
                 <div class="d-flex justify-content-around" style="margin-bottom: 15PX">
                     <a href="#" class="BTN-T"  data-bs-toggle="modal" data-bs-target="#showModal<%=Q.getId_question() %>">détails...</a>

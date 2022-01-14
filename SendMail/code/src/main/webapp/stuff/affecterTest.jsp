@@ -3,7 +3,8 @@
 <%@ page import="java.util.Iterator" %>
 <%@ page import="models.Student" %>
 <%@ page import="factory.DaoFactory" %>
-<%@ page import="models.Question" %><%--
+<%@ page import="models.Question" %>
+<%@ page import="models.TestStudentSended" %><%--
   Created by IntelliJ IDEA.
   User: adm
   Date: 12/01/2022
@@ -28,7 +29,9 @@
 
 <%@include file="/stuff/sidebar.jsp"%>
 <div class="bodyContent">
+
     <div class="incontent">
+
         <div class="container">
             <div class="row">
                 <h1> Affectation du test : </h1>
@@ -40,7 +43,7 @@
                             List<Test> list = (List<Test>) request.getAttribute("listTest");
                             Iterator iterator = list.iterator();
                         %>
-                        <select class="form-control w-50 control" id="test" name="test" required>
+                        <select class="form-control w-50 control" id="test" name="id_test" required>
                             <option selected disabled value="">select un test</option>
                             <%
                                 while(iterator.hasNext()){
@@ -68,6 +71,13 @@
                     <button type="submit" class="BTN-TBL">Envoyer</button>
                 </form>
                  </fieldset>
+            </div>
+            <div class="row">
+                <%if(request.getAttribute("operationsResponse")!=null){
+                    for(TestStudentSended ts:(List<TestStudentSended>)request.getAttribute("operationsResponse")){%>
+                <p> ID test : <%=ts.getId_test()%> ---- Email : <%=ts.getEmail()%> ---- Statut : <%=ts.isSended()%></p>
+                <%}
+                }%>
             </div>
         </div>
     </div>
