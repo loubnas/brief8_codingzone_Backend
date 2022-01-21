@@ -20,21 +20,8 @@ public class QuestionDaoImpl extends DAO<Question> {
 
     @Override
     public int create(Question question)  {
-
-
-       /* int uniqueID = UUID.randomUUID().toString();*/
-
         try {
             PreparedStatement preparedStatement =this.connection.prepareStatement("INSERT INTO question ( content,reponse1,reponse2,reponse3,reponse4,duration,score,trueanswer) VALUES (?,?,?,?,?,?,?,?);");
-       /*     preparedStatement.setInt(1, question.getId_question());
-            preparedStatement.setString(2, question.getContent());
-            preparedStatement.setString(3,question.getReponse1());
-            preparedStatement.setString(4,question.getReponse2());
-            preparedStatement.setString(5,question.getReponse3());
-            preparedStatement.setString(6,question.getReponse4());
-            preparedStatement.setInt(7, question.getDuration());
-            preparedStatement.setInt(8, question.getScore());
-            preparedStatement.setInt(9, question.getTrueAnswer());*/
 
             preparedStatement.setString(1, question.getContent());
             preparedStatement.setString(2,question.getReponse1());
@@ -94,7 +81,39 @@ public class QuestionDaoImpl extends DAO<Question> {
             return listQuestion;
 
         } catch (SQLException e) {
-     e.printStackTrace();
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+    public List<Question> findByTest(int id_test) {
+
+        try {
+            String query = "select * from question where id_question in (select id_question from id_test=?)";
+
+            PreparedStatement preparedStatement =this.connection.prepareStatement("select * from question where id_question in (select id_question from test_question where  id_test=?)");
+            preparedStatement.setInt(1,id_test);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            List<Question> listQuestion = new ArrayList<Question>();
+            while (resultSet.next()) {
+                listQuestion.add(new Question(
+                        resultSet.getInt("id_question"),
+                        resultSet.getString("content"),
+
+                        resultSet.getString("reponse1"),
+                        resultSet.getString("reponse2"),
+                        resultSet.getString("reponse3"),
+                        resultSet.getString("reponse4"),
+                        resultSet.getInt("trueanswer"),
+                        resultSet.getInt("duration"),
+                        resultSet.getInt("score")));
+            }
+            System.out.print(listQuestion);
+            return listQuestion;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
             return null;
         }
 

@@ -17,6 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @WebServlet(name = "AffecterTestServlet", value = "/AffecterTestServlet")
@@ -44,36 +47,52 @@ public class AffecterTestServlet extends HttpServlet {
 
         List<TestStudentSended> operationResponse=new ArrayList<TestStudentSended>() ;
 
+
+      DateFormat date=new SimpleDateFormat("MM/dd/yyyy",Locale.ENGLISH);
+        Date datelimite= null;
+        try {
+            datelimite =  new Date(date.parse(request.getParameter("date_limite")).getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         int idtest = Integer.parseInt(request.getParameter("id_test"));
-        // It will generate 6 digit random Number.
-        // from 0 to 999999
-
-
         String[] studentOBJ= request.getParameterValues( "studentOBJ");
 
         for(String std : studentOBJ) {
             String[] parts = std.split("-");
             String id_std = parts[0];
-            String email = parts[1];
-            System.out.print(std);
-            System.out.print("\n");
-            System.out.print(id_std);
-            System.out.print("\n");
-            System.out.print(email);
-            System.out.print("\n");
             int id_stdint =Integer.parseInt(id_std);
-            System.out.print(id_stdint);
+            String email = parts[1];
 
+            //----------------------------------
+
+            //System.out.print(std);
+            // System.out.print(id_std);
+            // System.out.print(email);
+
+            //----------------------------------
+
+
+            // It will generate 6 digit random Number.
+            // from 0 to 999999
             Random rnd = new Random();
             int number = rnd.nextInt(999999);
             // this will convert any number sequence into 6 character.
             String code = String.format("%06d", number);
 
+            //Set Subject header field
+            String subject = "Convocation Test Youcode";
+
+            //Now set the actual message
+            String message= "Bonjour , vous etes convoquer à passer le test afin de pouvoir nous rejoindre à Youcode , merci d'entrer le code suivant afin d'acceder à l'application ,Votre Code est :"+code+"" +
+                    "<a href='http://localhost:8080/codingZone_war_exploded/CodeServlet?code="+code+"'>Click ici pour demarrer </a>";
+
             try {
-                if(MailJava.SendMail(email, code)){
+                if(MailJava.SendMail(email, subject,message)){
                     // enregistrement test_student :
 
-                    TestStudent obj =new TestStudent(idtest, id_stdint,code);
+                    TestStudent obj =new TestStudent(idtest, id_stdint,datelimite ,code);
 
             int flag =testStudentDao.create(obj);
                     System.out.print("\n");

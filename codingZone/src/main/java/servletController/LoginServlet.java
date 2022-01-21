@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
       String message="welcome admin";
       request.setAttribute("message",message);
 
-    this.getServletContext().getRequestDispatcher("/stuff/dashboard.jsp").forward(request,response);
+            request.getRequestDispatcher("DashboardServlet").forward(request,response);
    }
         else{
             String message="email or  password incorrecte";
@@ -54,8 +54,11 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
         if(session.getAttribute("staff")==null){
             this.getServletContext().getRequestDispatcher("/login.jsp").forward(request,response);
-        }else{
-            this.getServletContext().getRequestDispatcher("/stuff/dashboard.jsp").forward(request,response);
+        }
+        else{
+
+            request.getRequestDispatcher("DashboardServlet").forward(request,response);
+
         }
     }
 

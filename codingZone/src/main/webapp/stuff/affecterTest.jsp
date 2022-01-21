@@ -1,10 +1,7 @@
-<%@ page import="models.Test" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Iterator" %>
-<%@ page import="models.Student" %>
 <%@ page import="factory.DaoFactory" %>
-<%@ page import="models.Question" %>
-<%@ page import="models.TestStudentSended" %><%--
+<%@ page import="models.*" %><%--
   Created by IntelliJ IDEA.
   User: adm
   Date: 12/01/2022
@@ -16,7 +13,6 @@
 <head>
     <title>Affecter le test</title>
     <style><%@include file="/css/question.css"%></style>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -24,6 +20,9 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
@@ -35,7 +34,7 @@
         <div class="container">
             <div class="row">
                 <h1> Affectation du test : </h1>
-                 <fieldset>
+                 <fieldset  style= "margin-top: 6%; ">
                 <form action="AffecterTestServlet" method="POST">
                     <div class="form-group">
                         <label class="form-label" for="test">select un test</label>
@@ -57,7 +56,7 @@
                         <label for="email1">Email</label>
 
                         <% List<Student> students = DaoFactory.getStudentImpl().findAll();%>
-                        <select class="form-select" id='pre-selected-options' name="studentOBJ" multiple='multiple'>
+                        <select id="email1" class="form-select w-50 control" id='pre-selected-options' name="studentOBJ" multiple='multiple'>
                             <% for(Student s : students){ %>
                             <option value="<%=s.getId_student()%>-<%=s.getEmail()%>"> <%=s.getEmail()%></option>
                             <% }%>
@@ -68,14 +67,37 @@
                         <br>
 
                     </div>
+
+                    <div class="form-group">
+                        <label>Date limite </label>
+
+                         <!-- datepicker -->
+                        <div class="input-group date DD" data-provide="datepicker">
+                            <input name="date_limite" type="text" class="form-control  w-50 control">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
+                        <script> $('.datepicker').datepicker({
+
+                            startDate: '0d'
+                        });</script>
+
+                        <br>
+
+                    </div>
+
                     <button type="submit" class="BTN-TBL">Envoyer</button>
                 </form>
                  </fieldset>
             </div>
+
+
+
             <div class="row">
                 <%if(request.getAttribute("operationsResponse")!=null){
-                    for(TestStudentSended ts:(List<TestStudentSended>)request.getAttribute("operationsResponse")){%>
-                <p> ID test : <%=ts.getId_test()%> ---- Email : <%=ts.getEmail()%> ---- Statut : <%=ts.isSended()%></p>
+                    for(TestStudentSended t:(List<TestStudentSended>)request.getAttribute("operationsResponse")){%>
+                <p> ID test : <%=t.getId_test()%> ---- Email : <%=t.getEmail()%> ---- Statut : <%=t.isSended()%></p>
                 <%}
                 }%>
             </div>
@@ -84,3 +106,8 @@
 </div>
 </body>
 </html>
+
+
+
+
+

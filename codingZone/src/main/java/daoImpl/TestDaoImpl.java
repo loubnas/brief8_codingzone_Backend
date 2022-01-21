@@ -1,8 +1,8 @@
 package daoImpl;
 
 import dao.DAO;
-import models.Question;
-import models.Test;
+import factory.DaoFactory;
+import models.*;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,21 +13,21 @@ import java.util.List;
 
 public class TestDaoImpl extends DAO<Test> {
 
-    public Test create(Test test,int xtra) {
+    public Test create(Test test, int xtra) {
 
         try {
-            PreparedStatement preparedStatement =this.connection.prepareStatement("INSERT INTO test ( id_test,name,description,id_staff) VALUES (DEFAULT,?,?,?);", Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1,test.getName());
-            preparedStatement.setString(2,test.getDescription());
-            preparedStatement.setLong(3,test.getId_staff());
+            PreparedStatement preparedStatement = this.connection.prepareStatement("INSERT INTO test ( id_test,name,description,id_staff) VALUES (DEFAULT,?,?,?);", Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, test.getName());
+            preparedStatement.setString(2, test.getDescription());
+            preparedStatement.setLong(3, test.getId_staff());
 
             int resultSet = preparedStatement.executeUpdate();
-            ResultSet rs=preparedStatement.getGeneratedKeys();
-            while(rs.next()){
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            while (rs.next()) {
                 test.setId_test(rs.getInt(1));
             }
 
-            return  test;
+            return test;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -38,14 +38,14 @@ public class TestDaoImpl extends DAO<Test> {
     public int create(Test test) {
 
         try {
-            PreparedStatement preparedStatement =this.connection.prepareStatement("INSERT INTO test ( id_test,name,description,id_staff) VALUES (DEFAULT,?,?,?);", Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1,test.getName());
-            preparedStatement.setString(2,test.getDescription());
-            preparedStatement.setLong(3,test.getId_staff());
+            PreparedStatement preparedStatement = this.connection.prepareStatement("INSERT INTO test ( id_test,name,description,id_staff) VALUES (DEFAULT,?,?,?);", Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, test.getName());
+            preparedStatement.setString(2, test.getDescription());
+            preparedStatement.setLong(3, test.getId_staff());
 
             int resultSet = preparedStatement.executeUpdate();
 
-            return  resultSet;
+            return resultSet;
         } catch (SQLException e) {
             e.printStackTrace();
             return 0;
@@ -57,7 +57,7 @@ public class TestDaoImpl extends DAO<Test> {
         try {
             String query = "select * from test";
 
-            PreparedStatement preparedStatement =this.connection.prepareStatement(query);
+            PreparedStatement preparedStatement = this.connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             List<Test> listTest = new ArrayList<>();
@@ -83,6 +83,30 @@ public class TestDaoImpl extends DAO<Test> {
 
     @Override
     public Test find(int id) {
+
+        try {
+
+
+            PreparedStatement preparedStatement = this.connection.prepareStatement("SELECT * FROM test where id_test=? ");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            Test tsa = null;
+            while (resultSet.next()) {
+
+                tsa = new Test();
+                tsa.setId_test(resultSet.getInt("id_test"));
+                tsa.setName(resultSet.getString("name"));
+                tsa.setDescription(resultSet.getString("description"));
+                tsa.setId_staff(resultSet.getInt("id_staff"));
+
+                tsa.setQuestions(((QuestionDaoImpl) DaoFactory.getQuestionImpl()).findByTest(id));
+                return tsa;
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -94,7 +118,7 @@ public class TestDaoImpl extends DAO<Test> {
     @Override
     public int delete(int id) {
         try {
-            PreparedStatement preparedStatement =this.connection.prepareStatement("DELETE from test where id_test=?");
+            PreparedStatement preparedStatement = this.connection.prepareStatement("DELETE from test where id_test=?");
             preparedStatement.setInt(1, id);
 
 
@@ -116,4 +140,8 @@ public class TestDaoImpl extends DAO<Test> {
     public Test login(Test obj) {
         return null;
     }
+
+
+
+
 }

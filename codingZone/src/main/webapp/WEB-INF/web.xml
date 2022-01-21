@@ -88,6 +88,50 @@
         <url-pattern>/AffecterTestServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>CodeServlet</servlet-name>
+        <servlet-class>servletController.CodeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CodeServlet</servlet-name>
+        <url-pattern>/CodeServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>servletController.HomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/HomeServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>StartTestServlet</servlet-name>
+        <servlet-class>servletController.StartTestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StartTestServlet</servlet-name>
+        <url-pattern>/StartTestServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>RapportServlet</servlet-name>
+        <servlet-class>servletController.RapportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RapportServlet</servlet-name>
+        <url-pattern>/RapportServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>DashboardServlet</servlet-name>
+        <servlet-class>servletController.DashboardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DashboardServlet</servlet-name>
+        <url-pattern>/DashboardServlet</url-pattern>
+    </servlet-mapping>
 
 
 

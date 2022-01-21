@@ -15,7 +15,7 @@ import javax.mail.Transport;
 
 public class MailJava {
 
-    public static boolean SendMail(String recipient,String code) throws MessagingException  {
+    public static boolean SendMail(String recipient,String subject,String messageEmail) throws MessagingException  {
 
         System.out.println("methode SendMail");
 
@@ -30,7 +30,7 @@ public class MailJava {
         String myEmail = "brief5mutuellecentralisee@gmail.com";
         String mypassword = "hzebuugjolehzcoh";
        /* String myEmail = "achrafharimza14@gmail.com";
-        String mypassword = "**********";*/
+        String mypassword = "aiqtsohaltkyojdf";*/
 
         //Get the Session object. and pass username and password
         Session session = Session.getInstance(properties,new Authenticator() {
@@ -52,10 +52,10 @@ public class MailJava {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 
             //Set Subject header field
-            message.setSubject("Convocation Test Youcode");
+            message.setSubject(subject);
 
             //Now set the actual message
-            message.setText("Bonjour , vous etes convoquer à passer le test afin de pouvoir nous rejoindre à Youcode , merci d'entrer le code suivant afin d'acceder à l'application ,Votre Code est :"+code);
+            message.setContent(messageEmail, "text/html");
 
 
                 System.out.println("sending...");

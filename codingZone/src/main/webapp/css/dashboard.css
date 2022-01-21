@@ -1,3 +1,6 @@
+body{
+    background-color: #9292721f
+}
 .sidebar {
     width: 16%;
     max-height: 100%;
@@ -17,10 +20,6 @@
 
 }
 
-.card{
-    background-color: rgba(0, 140, 221, 0.2);
-
-}
 
 .imgnav img {
     width: 156px;
@@ -75,7 +74,12 @@ a.action:hover {
 .card {
     height: 31vh;
     margin-top: 22%;
-    box-shadow: 2px 2px 12px #181717;
+    box-shadow: 2px 2px 12px gray;
+    width: 70% !important;
+    margin-left: 10% !important;
+    background-color: white;
+
+
 }
 
 h4{
@@ -87,8 +91,10 @@ label{
     font-size: 18px;
 }
 
-.shop{
+.shop-card{
     font-weight: 900;
+    font-size: 6em !important;
+    margin-left: 30%;
 }
 
 
@@ -123,11 +129,6 @@ body{
 .tl{
     margin-left: 36%;
 }
-
-
-
-
-
 
 
 input {
@@ -181,8 +182,27 @@ h5{
 
 label{
     color: #040e26;
+    font-size: 20px;
 }
 
 .modal-body{
     padding-bottom: 3px !important;
+}
+
+canvas{
+    margin-left: 10%;
+    width: 80% !important;
+    height: 500 !important;
+    background-color: white;
+    box-shadow: 2px 2px 12px gray;
+
+}
+
+span{
+    color:#007cf9;
+    font-weight: bold;
+}
+
+.cards{
+    margin-left: 8% !important;
 }

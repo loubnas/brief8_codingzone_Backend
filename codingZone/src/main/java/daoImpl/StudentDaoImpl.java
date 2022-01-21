@@ -3,6 +3,7 @@ package daoImpl;
 import dao.DAO;
 
 import models.Student;
+import models.TestStudentAnswer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,7 +32,6 @@ public class StudentDaoImpl extends DAO<Student> {
 
             List<Student> listStudent = new ArrayList<Student>();
             while (resultSet.next()) {
-                //System.out.print( resultSet.getString("content"));
                 listStudent.add(new Student(
                         resultSet.getInt("id_student"),
                         resultSet.getString("firstname_student"),
@@ -48,6 +48,27 @@ public class StudentDaoImpl extends DAO<Student> {
 
     @Override
     public Student find(int id) {
+        try {
+
+
+            PreparedStatement preparedStatement = this.connection.prepareStatement("SELECT * FROM student where id_student=? ");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            Student s = null;
+            while (resultSet.next()) {
+
+               s = new Student();
+                s.setId_student(resultSet.getInt("id_student"));
+                s.setFistNameStudent(resultSet.getString("firstname_student"));
+                s.setLastNameStudent(resultSet.getString("lastname_student"));
+                s.setEmail(resultSet.getString("email"));
+                return s;
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

@@ -1,5 +1,8 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Test {
 
     private int id_test;
@@ -8,11 +11,14 @@ public class Test {
     private int id_staff;
 
 
+    private List<Question> questions;
+
     public Test(int id_test, String name, String description, int id_staff) {
         this.id_test = id_test;
         this.name = name;
         this.description = description;
         this.id_staff = id_staff;
+        this.questions=new ArrayList<>();
     }
     public Test() {
 
@@ -56,6 +62,13 @@ public class Test {
         this.id_staff = id_staff;
     }
 
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
 
 
 
